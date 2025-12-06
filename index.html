@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEYPER Livrables</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="Portfolio_logo.jpeg" type="image/jpeg">
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <img src="Portfolio_logo.jpeg" alt="Logo Portfolio" class="logo-img">
+                <span>KEYPER Livrables</span>
+            </div>
+            
+            <div class="nav-center">
+                <div class="nav-buttons">
+                    <div class="dropdown">
+                        <button class="dropbtn">Dossiers</button>
+                        <div class="dropdown-content">
+                            <!-- Les options seront ajoutées dynamiquement -->
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn">Livrables</button>
+                        <div class="dropdown-content" id="files-dropdown">
+                            <!-- Les options seront ajoutées dynamiquement -->
+                        </div>
+                    </div>
+                    <button id="home-btn-desktop" class="home-btn">Accueil</button>
+                </div>
+                <button id="home-btn" class="home-btn mobile-home-btn">Accueil</button>
+            </div>
+            
+            <div class="nav-right">
+                <button id="fullscreen-btn" class="fullscreen-button" title="Mode plein écran">
+                    <span class="fullscreen-text">Plein écran</span>
+                    <svg class="fullscreen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Vue d'accueil -->
+    <div id="home-view" class="home-view">
+        <div class="chapters-container" id="chapters-container">
+            <!-- Le contenu sera généré dynamiquement par JavaScript -->
+        </div>
+    </div>
+
+    <main id="main-content">
+        <div class="file-navigation">
+            <button id="prev-file" class="nav-arrow">⬅️</button>
+            <div id="file-content" class="file-display">
+                <div class="welcome-message">
+                    <h1>Bienvenue sur mon portfolio</h1>
+                </div>
+            </div>
+            <button id="next-file" class="nav-arrow">➡️</button>
+        </div>
+    </main>
+
+    <button id="guide-btn" class="guide-button">Guide</button>
+    <div id="guide-modal" class="guide-modal">
+        <div class="guide-content">
+            <span class="close-guide">&times;</span>
+            <h2>📚 Guide d'utilisation</h2>
+            <div class="guide-text">
+                <p>🖱️ Vous pouvez directement sélectionner le fichier de votre souhait depuis l'Accueil</p>
+                <p>🏠 Si un fichier est déjà ouvert, vous pouvez revenir à l'Accueil grâce au bouton "ACCUEIL" en haut de la page</p>
+                <p>🔍 Utilisez les flèches de navigation ⬅️ et ➡️ pour passer facilement d'un fichier à l'autre dans le même chapitre</p>
+                <p>📂 Vous pouvez également utiliser les menus déroulants pour sélectionner: 1. Le dossier, 2. Le document de votre choix</p>
+                <p>💾 Vous pouvez télécharger chaque document que vous consultez grâce au bouton "Télécharger" en haut de la page</p>
+            </div>
+            <div id="guide-text">
+                <!-- Le contenu du guide sera chargé ici -->
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

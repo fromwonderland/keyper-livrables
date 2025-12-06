@@ -1,0 +1,1019 @@
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    height: 100%;
+    overflow-y: auto; /* Rétablir la barre de défilement principale */
+}
+
+/* Style de la barre de défilement personnalisée */
+::-webkit-scrollbar {
+    width: 12px; /* Largeur de la barre de défilement */
+}
+
+/* Piste de la barre de défilement */
+::-webkit-scrollbar-track {
+    background: #1e1e1e; 
+    border-left: 1px solid #333;
+}
+ 
+/* Poignée de la barre de défilement */
+::-webkit-scrollbar-thumb {
+    background: #1e88e5;
+    border-radius: 6px;
+    border: 3px solid #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #42a5f5;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: url('wallpaper.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #1e88e5 rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+/* Ajout d'un overlay sombre pour améliorer la lisibilité du contenu */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+/* Ajustement du contraste pour le contenu principal */
+main {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 95%;
+}
+
+/* Styles de la barre de navigation */
+.navbar {
+    background-color: #0d47a1;
+    color: #ffffff;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+}
+
+.navbar-container {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 100%;
+}
+
+.logo {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    white-space: nowrap;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    height: 40px; /* Ajustez la taille selon vos besoins */
+    width: auto;
+    border-radius: 4px;
+}
+
+/* Ajustement pour les tablettes */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 1.1rem;
+        white-space: normal;
+        line-height: 1.3;
+        padding: 0.5rem;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Afficher uniquement l'emoji maison sur mobile */
+@media (max-width: 768px) {
+    .mobile-home-btn {
+        font-size: 0; /* Cache le texte */
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+    
+    .mobile-home-btn::after {
+        content: '🏠';
+        font-size: 1.5rem;
+        display: block;
+    }
+}
+
+/* Ajustement pour les téléphones */
+@media (max-width: 480px) {
+    /* Fond spécifique pour les téléphones */
+    body {
+        background-image: url('wallpaper_phone.jpeg');
+    }
+    
+    /* Ajustement de l'overlay pour mobile */
+    body::before {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    .logo {
+        font-size: 0.9rem;
+        line-height: 1.2;
+        padding: 0.3rem 0.5rem;
+        margin: 0.3rem 0;
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .nav-center {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .nav-buttons {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+    
+    .mobile-home-btn {
+        display: block;
+        width: 100%;
+        margin: 0.2rem 0;
+        order: -1; /* Place le bouton en premier */
+    }
+    
+    .desktop-home-btn {
+        display: none;
+    }
+    
+    .dropdown {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .dropbtn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Conteneur pour les éléments centrés */
+.nav-center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+}
+
+/* Conteneur pour les boutons de navigation */
+.nav-buttons {
+    display: flex;
+    gap: 0.8rem;
+    flex: 1;
+    justify-content: center;
+}
+
+/* Bouton Accueil mobile (caché par défaut) */
+.mobile-home-btn {
+    display: none;
+}
+
+/* Bouton Accueil desktop */
+.desktop-home-btn {
+    display: inline-block;
+}
+
+/* Conteneur pour les éléments à droite */
+.nav-right {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+/* Style des boutons de navigation */
+.dropdown, .home-btn {
+    margin: 0.2rem;
+}
+
+/* Style des boutons déroulants */
+.dropbtn {
+    white-space: nowrap;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* Style du bouton ACCUEIL */
+.home-btn {
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+}
+
+/* Ajustement pour les petits écrans */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        padding: 0.5rem;
+    }
+    
+    .logo {
+        margin: 0.5rem 0;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .nav-center {
+        margin: 0.5rem 0;
+        gap: 0.5rem;
+    }
+    
+    .nav-right {
+        margin: 0.5rem 0;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .dropbtn, .home-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Masquer le bouton plein écran sur mobile */
+    #fullscreen-btn {
+        display: none;
+    }
+}
+
+/* Ajustement pour les très petits écrans */
+@media (max-width: 480px) {
+    .nav-center {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+    
+    .dropdown {
+        flex: 1;
+        min-width: 0;
+        margin: 0 0.2rem;
+    }
+    
+    .home-btn {
+        flex: 1;
+        min-width: 0;
+        margin: 0 0.2rem;
+        text-align: center;
+    }
+    
+    .dropbtn {
+        width: 100%;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0.5rem 0.3rem;
+    }
+    
+    /* Cacher la barre de défilement horizontale */
+    .nav-center::-webkit-scrollbar {
+        display: none;
+    }
+    .nav-center {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+/* Style du bouton ACCUEIL */
+.home-btn {
+    background-color: #0d47a1;
+    color: #e3f2fd;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border: 1px solid #1976d2;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.home-btn:hover {
+    background-color: #1565c0;
+    border-color: #42a5f5;
+    box-shadow: 0 0 10px rgba(66, 165, 245, 0.3);
+}
+
+.home-btn.active {
+    background-color: #0d47a1;
+    border-color: #42a5f5;
+    box-shadow: 0 0 15px rgba(66, 165, 245, 0.5);
+}
+
+/* Style du bouton de téléchargement */
+.download-btn {
+    background-color: #0d47a1;
+    color: #e3f2fd;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #42a5f5;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    margin: 0.5rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+}
+
+.download-btn:hover {
+    background-color: #1565c0;
+    border-color: #42a5f5;
+    box-shadow: 0 0 10px rgba(66, 165, 245, 0.3);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Positionnement du bouton de téléchargement */
+.file-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.file-actions {
+    margin-left: 1rem;
+}
+
+/* Vue d'accueil */
+.home-view {
+    display: none;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.home-view.active {
+    display: block;
+}
+
+.chapters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.chapter-section {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.chapter-title {
+    color: #42a5f5;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #333;
+}
+
+.files-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-left: 1.5rem;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background-color: #252525;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.file-item:hover {
+    background-color: #333;
+    border-color: #42a5f5;
+    transform: translateX(5px);
+}
+
+.file-icon {
+    font-size: 1.2rem;
+    color: #42a5f5;
+}
+
+/* Style pour masquer la vue principale quand on est sur l'accueil */
+#main-content.hidden {
+    display: none;
+}
+
+/* Style pour les écrans plus larges */
+@media (min-width: 1024px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0.8rem 2rem;
+    }
+    
+    .logo {
+        margin-bottom: 0;
+        width: auto;
+        flex: 0 0 auto;
+        padding-right: 2rem;
+        white-space: nowrap;
+        margin-right: 0;
+    }
+    
+    .nav-center {
+        position: static;
+        transform: none;
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .nav-right {
+        margin-left: auto;
+    }
+}
+
+/* Style des boutons de menu déroulant */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    min-width: 150px;
+    text-align: center;
+}
+
+.dropbtn {
+    background-color: #1565c0;
+    color: #e3f2fd;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border: 1px solid #1976d2;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.dropbtn:hover {
+    background-color: #1976d2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3);
+    border-color: #42a5f5;
+}
+
+/* Conteneur du menu déroulant */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Contenu du menu déroulant (caché par défaut) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1e1e1e;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    z-index: 1;
+    border-radius: 4px;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #333;
+}
+
+/* Liens dans le menu déroulant */
+.dropdown-content a {
+    color: #e0e0e0;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s;
+}
+
+/* Changement de couleur au survol des liens */
+.dropdown-content a:hover {
+    background-color: #1976d2;
+    color: white;
+}
+
+/* Afficher le menu déroulant au survol */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Contenu principal */
+main {
+    max-width: 1400px;
+    margin: 1rem auto;
+    padding: 0 1.5rem;
+    flex: 1;
+    width: 100%;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+}
+
+/* Masquer la barre de défilement dans WebKit (Chrome, Safari) */
+main::-webkit-scrollbar {
+    display: none;
+}
+
+.welcome-message {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-message h1 {
+    color: #42a5f5;
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.welcome-message p {
+    font-size: 0.95rem;
+    color: #b0bec5;
+}
+
+/* Navigation entre les fichiers */
+.file-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex: 1;
+    width: 100%;
+}
+
+.nav-arrow {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #90caf9;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-arrow:hover {
+    transform: scale(1.1);
+    color: #ffffff;
+}
+
+.file-display {
+    flex: 1;
+    max-width: 80%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 1.5rem;
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+.file-container {
+    width: 100%;
+    height: 100%;
+    color: #e0e0e0;
+}
+
+.file-container h2 {
+    color: #42a5f5;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #333;
+    font-size: 1.5rem;
+}
+
+.file-preview {
+    padding: 1rem 0;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: #e0e0e0;
+}
+
+.file-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    color: #90a4ae;
+    font-size: 0.9rem;
+    border-top: 1px solid #333;
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+/* Style spécifique pour l'iframe PDF */
+.file-preview iframe {
+    width: 100%;
+    min-height: 75vh; /* Utilisation de la hauteur de la fenêtre */
+    height: 75vh; /* Hauteur fixe pour une meilleure visibilité */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+/* Style pour les messages d'erreur de chargement PDF */
+.file-preview iframe[src$=".pdf"] {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="%23cccccc" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 8 9 8 17"></polyline></svg>') center/100px no-repeat;
+}
+
+/* Styles pour le bouton Guide */
+.guide-button {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    padding: 14px 28px;
+    background-color: #0d47a1;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 120px;
+}
+
+.guide-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles pour la modale du guide */
+.guide-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+}
+
+.guide-content {
+    background-color: #d5f0c0;
+    padding: 30px;
+    border-radius: 10px;
+    width: 85%;
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    border: 2px solid #1976d2;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.guide-content h2 {
+    margin: 0 0 20px 0;
+    color: #64b5f6;
+    text-align: center;
+    font-size: 2em;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;
+}
+
+.guide-text {
+    line-height: 1.8;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.guide-text p {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    border-left: 4px solid #1976d2;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.guide-text p:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: translateX(4px);
+}
+
+.guide-text p::before {
+    font-size: 1.3em;
+    min-width: 30px;
+    text-align: center;
+}
+
+.close-guide {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-guide:hover {
+    color: #333;
+}
+
+/* Styles pour le bouton Plein écran */
+.fullscreen-btn-container {
+    margin-left: auto;
+}
+
+.fullscreen-button {
+    display: none; /* Cache le bouton plein écran */
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    height: 40px;
+}
+
+.fullscreen-text {
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.fullscreen-icon {
+    width: 18px;
+    height: 18px;
+    stroke: #fff;
+    flex-shrink: 0;
+}
+
+.fullscreen-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.fullscreen-icon {
+    width: 20px;
+    height: 20px;
+    stroke: #fff;
+}
+
+/* Style pour le mode plein écran */
+:fullscreen .fullscreen-icon {
+    display: none;
+}
+
+:fullscreen .fullscreen-icon + .minimize-icon {
+    display: block;
+}
+
+.minimize-icon {
+    display: none;
+    width: 20px;
+    height: 20px;
+    stroke: #fff;
+}
+
+:fullscreen .fullscreen-button {
+    position: fixed;
+    top: 1.2rem; /* Ajustement pour alignement avec le bouton Chapitres */
+    right: 2rem;
+    z-index: 1000;
+    background-color: #3498db;
+    color: white;
+    padding: 0.5rem 1rem; /* Ajustement du padding pour correspondre au bouton Chapitres */
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px; /* Hauteur fixe pour correspondre au bouton Chapitres */
+    box-sizing: border-box;
+}
+
+:fullscreen .fullscreen-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Style pour les tablettes */
+@media (max-width: 1024px) {
+    :fullscreen .fullscreen-button {
+        top: 0.8rem; /* Ajustement pour les tablettes */
+        right: 1rem;
+        padding: 0.4rem 0.8rem;
+        height: 34px; /* Légèrement plus petit sur tablette */
+    }
+    .menu-center {
+        position: static;
+        transform: none;
+        margin: 0 auto;
+    }
+    
+    .navbar-container {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .logo {
+        margin-right: auto;
+    }
+    
+    .fullscreen-btn-container {
+        margin-left: 0;
+        order: 3;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+/* Style pour les petits écrans */
+@media (max-width: 768px) {
+    .guide-button {
+        left: 10px;
+        bottom: 10px;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        min-width: auto;
+    }
+    
+    .guide-content {
+        width: 90%;
+        padding: 20px 15px;
+    }
+    
+    .navbar {
+        padding: 0.6rem;
+    }
+    
+    .logo {
+        margin-bottom: 0.6rem;
+        font-size: 1rem;
+    }
+    
+    .menu-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+        padding: 0 0.5rem;
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .dropdown {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .dropdown-content {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    
+    .file-navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .file-display {
+        max-width: 100%;
+        order: -1;
+    }
+    
+    .nav-arrow {
+        transform: rotate(90deg);
+    }
+    
+    .nav-arrow:hover {
+        transform: rotate(90deg) scale(1.1);
+    }
+    
+    main {
+        max-height: calc(100vh - 120px); /* Ajustement pour la navbar empilée */
+    }
+}
+
+/* Style pour les tablettes */
+@media (min-width: 769px) and (max-width: 1023px) {
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .menu-center {
+        position: static;
+        transform: none;
+        margin: 0 auto;
+    }
+    
+    .navbar-container {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .logo {
+        margin-right: auto;
+    }
+    
+    .fullscreen-btn-container {
+        margin-left: 0;
+        order: 3;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
