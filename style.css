@@ -24,13 +24,13 @@ html {
  
 /* Poignée de la barre de défilement */
 ::-webkit-scrollbar-thumb {
-    background: #1e88e5;
+    background: #8B4513;
     border-radius: 6px;
     border: 3px solid #1e1e1e;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #42a5f5;
+    background: #8B4513;
 }
 
 body {
@@ -44,7 +44,7 @@ body {
     flex-direction: column;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: #1e88e5 rgba(0, 0, 0, 0.5);
+    scrollbar-color: #8B4513 rgba(0, 0, 0, 0.5);
     position: relative;
 }
 
@@ -72,7 +72,7 @@ main {
 
 /* Styles de la barre de navigation */
 .navbar {
-    background-color: #0d47a1;
+    background-color: SaddleBrown;
     color: #ffffff;
     padding: 1rem 2rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -309,6 +309,7 @@ main {
     }
     
     .dropbtn {
+        background-color: #8B4513;  /* Marron foncé */
         width: 100%;
         text-align: center;
         white-space: nowrap;
@@ -329,11 +330,11 @@ main {
 
 /* Style du bouton ACCUEIL */
 .home-btn {
-    background-color: #0d47a1;
-    color: #e3f2fd;
+    background-color: BurlyWood;
+    color: black;
     padding: 0.6rem 1.2rem;
     font-size: 1rem;
-    border: 1px solid #1976d2;
+    border: 1px solid BurlyWood;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -348,10 +349,38 @@ main {
     box-shadow: 0 0 10px rgba(66, 165, 245, 0.3);
 }
 
-.home-btn.active {
-    background-color: #0d47a1;
-    border-color: #42a5f5;
-    box-shadow: 0 0 15px rgba(66, 165, 245, 0.5);
+/* Style du bouton ACCUEIL - Version finale */
+.home-btn, 
+#home-btn, 
+#home-btn-desktop {
+    background-color: BurlyWood !important;
+    color: black !important;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border: 1px solid BurlyWood !important;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Style au survol */
+.home-btn:hover, 
+#home-btn:hover, 
+#home-btn-desktop:hover {
+    background-color: #DEB887 !important; /* Version légèrement plus claire de BurlyWood */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Style actif */
+.home-btn.active, 
+#home-btn.active, 
+#home-btn-desktop.active {
+    background-color: #CDAA7D !important; /* Version légèrement plus foncée de BurlyWood */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Style du bouton de téléchargement */
@@ -420,7 +449,7 @@ main {
 }
 
 .chapter-title {
-    color: #42a5f5;
+    color: #8B4513;
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
@@ -502,8 +531,8 @@ main {
 }
 
 .dropbtn {
-    background-color: #1565c0;
-    color: #e3f2fd;
+    background-color: BurlyWood;
+    color: black;
     padding: 0.6rem 1.2rem;
     font-size: 1rem;
     border: 1px solid #1976d2;
@@ -700,8 +729,8 @@ main::-webkit-scrollbar {
     bottom: 25px;
     left: 25px;
     padding: 14px 28px;
-    background-color: #0d47a1;
-    color: white;
+    background-color: BurlyWood;
+    color: black;
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -749,7 +778,7 @@ main::-webkit-scrollbar {
     max-height: 85vh;
     overflow-y: auto;
     position: relative;
-    border: 2px solid #1976d2;
+    border: 2px solid white;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
