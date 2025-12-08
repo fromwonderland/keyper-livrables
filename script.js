@@ -11,7 +11,13 @@ const fileContent = document.getElementById('file-content');
 
 // Données des chapitres et fichiers
 const appData = {
-    '📂Livrables du projet': ['Cahier des charges.pdf','Etude de faisabilité.pdf', 'Plan de gestion de projet.pdf', 'SFG.pdf', 'Dossier technique.pdf', 'Maquettes et prototypes.pdf', 'Documentation développeur.pdf', 'Plan de tests Rapport de validation.pdf','Manuel utilisation.pdf'],
+    '📂Analyse des besoins': ['Cahier des charges.pdf','Etude de faisabilité.pdf'],
+    '📂SFD SFG': ['SFG - SFD.pdf'],
+    '📂Conception': ['Maquettes et prototypes.pdf'],
+    '📂Développement': ['Dossier technique.pdf','Plan de gestion de projet.pdf'],
+    '📂Tests et validation': ['Plan de tests - Rapport de validation.pdf'],
+    '📂Déploiement et maintenance': ['Documentation développeur.pdf','Manuel utilisation.pdf'],
+
 };
 
 // Gestion du mode plein écran
