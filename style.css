@@ -983,38 +983,34 @@ main::-webkit-scrollbar {
     width: 100%;
     height: 3px;
     background-color: white;
-    border-radius: 3px;
     transition: all 0.3s ease;
-    transform-origin: center;
 }
 
 .mobile-menu {
+    display: none;
     position: fixed;
     top: 0;
-    right: -300px;
-    width: 280px;
+    right: -250px;
+    width: 250px;
     height: 100%;
-    background-color: #2c3e50;
-    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.3);
-    z-index: 999;
-    padding: 80px 20px 30px;
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    display: block !important; /* S'assurer que le menu est toujours dans le flux du document */
+    background-color: #1e1e1e;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 70px 20px 20px;
+    transition: right 0.3s ease;
 }
 
 .mobile-menu.active {
     right: 0;
+    display: block;
 }
 
-/* Styles pour les éléments du menu mobile */
 .mobile-menu-item {
     display: block;
     width: 100%;
     padding: 12px 15px;
-    margin-bottom: 8px;
-    background-color: #34495e;
+    margin-bottom: 10px;
+    background-color: #2d2d2d;
     color: white !important;
     border: none;
     border-radius: 4px;
@@ -1026,78 +1022,7 @@ main::-webkit-scrollbar {
 }
 
 .mobile-menu-item:hover {
-    background-color: #4a6b8a;
-}
-
-/* Styles pour les menus déroulants mobiles */
-.mobile-dropdown {
-    position: relative;
-    width: 100%;
-    margin-bottom: 8px;
-}
-
-.mobile-dropbtn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 12px 15px;
-    background-color: #34495e;
-    color: white !important;
-    border: none;
-    border-radius: 4px;
-    text-align: left;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.mobile-dropbtn:hover {
-    background-color: #4a6b8a;
-}
-
-.mobile-dropdown-content {
-    display: none;
-    width: 100%;
-    padding: 8px 0 0 0;
-    background-color: transparent;
-    z-index: 1;
-}
-
-.mobile-dropdown.active .mobile-dropdown-content {
-    display: block;
-}
-
-.mobile-dropdown-item {
-    display: block;
-    width: 100%;
-    padding: 10px 15px 10px 25px;
-    background-color: #2c3e50;
-    color: white !important;
-    border: none;
-    text-align: left;
-    text-decoration: none;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.mobile-dropdown-item:hover {
-    background-color: #3d5166;
-}
-
-.dropdown-arrow {
-    font-size: 0.8em;
-    margin-left: 8px;
-    transition: transform 0.3s ease;
-}
-
-.mobile-dropdown.active .dropdown-arrow {
-    transform: rotate(180deg);
-}
-
-.mobile-menu-item:hover {
-    background-color: #4a6b8a;
+    background-color: #3d3d3d;
 }
 
 /* Style pour les boutons desktop */
@@ -1227,88 +1152,6 @@ main::-webkit-scrollbar {
 }
 
 /* Style pour les petits écrans */
-@media (max-width: 1024px) {
-    .mobile-menu-button {
-        display: flex;
-    }
-
-    .desktop-only {
-        display: none !important;
-    }
-    
-    /* Cacher le menu de navigation principal sur mobile */
-    .nav-center {
-        display: none;
-    }
-    
-    /* Ajuster la hauteur de la navbar */
-    .navbar {
-        height: 60px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 998;
-        background-color: #1e1e1e;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* S'assurer que le contenu principal n'est pas caché derrière la navbar */
-    main {
-        padding-top: 70px;
-        min-height: calc(100vh - 70px);
-        position: relative;
-        z-index: 1;
-    }
-    
-    /* Ajuster le logo */
-    .logo {
-        font-size: 1.1rem;
-        padding-left: 15px;
-    }
-    
-    /* S'assurer que le bouton est bien positionné */
-    .mobile-menu-button {
-        right: 15px;
-    }
-    
-    /* Animation du bouton hamburger */
-    .mobile-menu-button.active span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
-    
-    .mobile-menu-button.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .mobile-menu-button.active span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
-    
-    /* Ajustements spécifiques pour les très petits écrans */
-    @media (max-width: 480px) {
-        .mobile-menu {
-            width: 85%;
-            right: -85%;
-        }
-        
-        .logo {
-            font-size: 1rem;
-        }
-        
-        .mobile-menu-item, 
-        .mobile-dropbtn {
-            padding: 10px 12px;
-            font-size: 0.95rem;
-        }
-        
-        .mobile-dropdown-item {
-            padding: 8px 12px 8px 20px;
-            font-size: 0.85rem;
-        }
-    }
-}
-
 @media (max-width: 768px) {
     .guide-button {
         left: 10px;
