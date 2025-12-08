@@ -728,25 +728,29 @@ main::-webkit-scrollbar {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    padding: 14px 28px;
+    padding: 12px 24px;
     background-color: BurlyWood;
-    color: black;
+    color: black !important; /* Force la couleur du texte */
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 600;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     z-index: 1000;
-    text-decoration: none;
+    text-decoration: none !important; /* Supprime le soulignement */
     text-align: center;
-    display: flex;
+    display: inline-flex; /* Utilise inline-flex pour une meilleure compatibilité */
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    -webkit-appearance: none; /* Désactive le style natif sur mobile */
+    -moz-appearance: none;
+    appearance: none;
+    white-space: nowrap; /* Empêche le retour à la ligne du texte */
 }
 
 .keyper-online-button:hover {
@@ -950,6 +954,16 @@ main::-webkit-scrollbar {
 }
 
 /* Style pour les tablettes */
+/* Styles pour les appareils mobiles */
+@media (max-width: 768px) {
+    .keyper-online-button {
+        font-size: 0.9em;
+        padding: 10px 20px;
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
 @media (max-width: 1024px) {
     :fullscreen .fullscreen-button {
         top: 0.8rem; /* Ajustement pour les tablettes */
