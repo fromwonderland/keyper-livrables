@@ -16,7 +16,7 @@
             </div>
             
             <div class="nav-center">
-                <div class="nav-buttons">
+                <div class="menu-center desktop-only">
                     <div class="dropdown">
                         <button class="dropbtn">Dossiers</button>
                         <div class="dropdown-content">
@@ -31,16 +31,53 @@
                     </div>
                     <button id="home-btn-desktop" class="home-btn">Accueil</button>
                 </div>
-                <button id="home-btn" class="home-btn mobile-home-btn">Accueil</button>
+                <button id="home-btn" class="home-btn mobile-home-btn" style="display: none;">Accueil</button>
             </div>
             
             <div class="nav-right">
-                <button id="fullscreen-btn" class="fullscreen-button" title="Mode plein écran">
-                    <span class="fullscreen-text">Plein écran</span>
-                    <svg class="fullscreen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
-                    </svg>
+                <div class="desktop-buttons">
+                    <button id="fullscreen-btn" class="fullscreen-button" title="Mode plein écran">
+                        <span class="fullscreen-text">Plein écran</span>
+                        <svg class="fullscreen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Bouton hamburger pour mobile -->
+                <button id="mobile-menu-btn" class="mobile-menu-button" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
+                
+                <!-- Menu mobile -->
+                <div id="mobile-menu" class="mobile-menu">
+                    <button id="mobile-home-btn" class="mobile-menu-item">
+                        <span>🏠 Accueil</span>
+                    </button>
+                    <a href="https://www.youtube.com" target="_blank" class="mobile-menu-item">
+                        <span>📲 Accéder à KEYPER</span>
+                    </a>
+                    <div class="mobile-dropdown">
+                        <button class="mobile-dropbtn">
+                            <span>📁 Dossiers</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="mobile-dropdown-content" id="mobile-chapters-dropdown">
+                            <!-- Les options seront ajoutées dynamiquement -->
+                        </div>
+                    </div>
+                    <div class="mobile-dropdown">
+                        <button class="mobile-dropbtn">
+                            <span>📄 Livrables</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="mobile-dropdown-content" id="mobile-files-dropdown">
+                            <!-- Les options seront ajoutées dynamiquement -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -70,6 +107,7 @@
             <span class="close-guide">&times;</span>
             <h2>📚 Guide d'utilisation</h2>
             <div class="guide-text">
+                <p>📲​ Sur téléphone, clique sur le bouton d'option pour accéder à l'Accueil ou ouvrir KEYPER dans un nouvel onglet</p>
                 <p>🖱️ Vous pouvez directement sélectionner le fichier de votre souhait depuis l'Accueil</p>
                 <p>🏠 Si un fichier est déjà ouvert, vous pouvez revenir à l'Accueil grâce au bouton "ACCUEIL" en haut de la page</p>
                 <p>🔍 Utilisez les flèches de navigation ⬅️ et ➡️ pour passer facilement d'un fichier à l'autre dans le même chapitre</p>
@@ -81,9 +119,12 @@
             </div>
         </div>
     </div>
-    <a href="https://www.youtube.com" target="_blank" class="keyper-online-button">
-        📲Accéder à KEYPER
-    </a>
+    <!-- Le bouton Accéder à KEYPER est maintenant dans le menu mobile -->
     <script src="script.js"></script>
+    
+    <!-- Bouton Accéder à KEYPER (version desktop) -->
+    <a href="https://www.youtube.com" target="_blank" class="keyper-online-button">
+        <span>🌐 Accéder à KEYPER</span>
+    </a>
 </body>
 </html>

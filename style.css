@@ -723,42 +723,49 @@ main::-webkit-scrollbar {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="%23cccccc" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 8 9 8 17"></polyline></svg>') center/100px no-repeat;
 }
 
-/* Style du bouton Accéder à KEYPER en ligne */
+/* Style du bouton Accéder à KEYPER en ligne (version desktop) */
 .keyper-online-button {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    padding: 12px 24px;
     background-color: BurlyWood;
-    color: black !important; /* Force la couleur du texte */
+    color: black;
     border: none;
     border-radius: 50px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    font-size: 1em;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-    z-index: 1000;
-    text-decoration: none !important; /* Supprime le soulignement */
-    text-align: center;
-    display: inline-flex; /* Utilise inline-flex pour une meilleure compatibilité */
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 9999;
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    -webkit-appearance: none; /* Désactive le style natif sur mobile */
-    -moz-appearance: none;
-    appearance: none;
-    white-space: nowrap; /* Empêche le retour à la ligne du texte */
 }
 
+/* Style au survol */
 .keyper-online-button:hover {
     background-color: #A0522D;  /* Marron plus clair au survol */
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     color: white;
     text-decoration: none;
+}
+
+/* Sur mobile, le bouton est dans le menu déroulant */
+@media (max-width: 1024px) {
+    .keyper-online-button:not(.mobile-menu-item) {
+        display: none !important;
+    }
 }
 
 /* Style pour le bouton Guide */
@@ -787,7 +794,7 @@ main::-webkit-scrollbar {
 }
 
 .guide-button:hover {
-    background-color: #2980b9;
+    background-color: BurlyWood;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -808,7 +815,7 @@ main::-webkit-scrollbar {
 }
 
 .guide-content {
-    background-color: #d5f0c0;
+    background-color: #c6ac8f;
     padding: 30px;
     border-radius: 10px;
     width: 85%;
@@ -822,7 +829,7 @@ main::-webkit-scrollbar {
 
 .guide-content h2 {
     margin: 0 0 20px 0;
-    color: #64b5f6;
+    color: black;
     text-align: center;
     font-size: 2em;
     padding-bottom: 15px;
@@ -840,7 +847,7 @@ main::-webkit-scrollbar {
     padding: 15px;
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 8px;
-    border-left: 4px solid #1976d2;
+    border-left: 4px solid black;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -953,18 +960,167 @@ main::-webkit-scrollbar {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Style pour les tablettes */
-/* Styles pour les appareils mobiles */
-@media (max-width: 768px) {
-    .keyper-online-button {
-        font-size: 0.9em;
-        padding: 10px 20px;
-        right: 15px;
-        bottom: 15px;
-    }
+/* Styles pour le menu mobile */
+.mobile-menu-button {
+    display: none; /* Caché par défaut */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
 }
 
+.mobile-menu-button span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #1e1e1e;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 70px 20px 20px;
+    transition: right 0.3s ease;
+}
+
+.mobile-menu.active {
+    right: 0;
+    display: block;
+}
+
+.mobile-menu-item {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background-color: #2d2d2d;
+    color: white !important;
+    border: none;
+    border-radius: 4px;
+    text-align: left;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.mobile-menu-item:hover {
+    background-color: #3d3d3d;
+}
+
+/* Style pour les boutons desktop */
+.desktop-only {
+    display: block;
+}
+
+/* Styles pour les menus déroulants mobiles */
+.mobile-dropdown {
+    position: relative;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.mobile-dropbtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #2d2d2d;
+    color: white !important;
+    border: none;
+    border-radius: 4px;
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.mobile-dropbtn:hover {
+    background-color: #3d3d3d;
+}
+
+.dropdown-arrow {
+    font-size: 0.8em;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.mobile-dropdown.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.mobile-dropdown-content {
+    display: none;
+    width: 100%;
+    background-color: #3d3d3d;
+    border-radius: 4px;
+    margin-top: 4px;
+    overflow: hidden;
+}
+
+.mobile-dropdown.active .mobile-dropdown-content {
+    display: block;
+}
+
+.mobile-dropdown-item {
+    display: block;
+    padding: 10px 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: background-color 0.2s;
+}
+
+.mobile-dropdown-item:hover {
+    background-color: #4d4d4d;
+}
+
+/* Style pour les tablettes */
+/* Styles pour les appareils mobiles */
 @media (max-width: 1024px) {
+    .desktop-only {
+        display: none !important;
+    }
+    
+    .mobile-home-btn {
+        display: none !important;
+    }
+    
+    .mobile-menu-button {
+        display: flex;
+    }
+    
+    .desktop-buttons {
+        display: none;
+    }
+    
+    .keyper-online-button {
+        display: none !important; /* S'assurer qu'il est bien caché sur mobile */
+    }
+    
+    .navbar-container {
+        position: relative;
+        padding-right: 60px;
+    }
+    
     :fullscreen .fullscreen-button {
         top: 0.8rem; /* Ajustement pour les tablettes */
         right: 1rem;

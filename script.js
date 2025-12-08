@@ -180,33 +180,108 @@ function initApp() {
     setupFullscreen();
     
     // Initialiser le bouton d'accueil
-    document.getElementById('home-btn').addEventListener('click', () => {
-        if (isHomeViewActive) {
-            showFileView();
-        } else {
-            showHomeView();
-        }
-    });
+    const homeBtn = document.getElementById('home-btn');
+    if (homeBtn) {
+        homeBtn.addEventListener('click', () => {
+            if (isHomeViewActive) {
+                showFileView();
+            } else {
+                showHomeView();
+            }
+        });
+    }
+    
+    // Initialiser les menus déroulants
+    const chaptersDropdown = document.querySelector('.dropdown-content');
+    const filesDropdown = document.getElementById('files-dropdown');
+    const mobileChaptersDropdown = document.getElementById('mobile-chapters-dropdown');
+    const mobileFilesDropdown = document.getElementById('mobile-files-dropdown');
+
+    // Fonction utilitaire pour créer un élément de menu
+    const createMenuItem = (text, clickHandler, isMobile = false) => {
+        const item = isMobile ? document.createElement('div') : document.createElement('a');
+        if (!isMobile) item.href = '#';
+        item.textContent = text;
+        if (isMobile) item.className = 'mobile-dropdown-item';
+        item.addEventListener('click', clickHandler);
+        return item;
+    };
+
+    // Vider les menus existants
+    if (chaptersDropdown) chaptersDropdown.innerHTML = '';
+    if (mobileChaptersDropdown) mobileChaptersDropdown.innerHTML = '';
+    if (filesDropdown) filesDropdown.innerHTML = '';
+    if (mobileFilesDropdown) mobileFilesDropdown.innerHTML = '';
+
+    // Ajouter les chapitres et fichiers aux menus déroulants
+    if (appData) {
+        // Parcourir tous les chapitres
+        Object.entries(appData).forEach(([chapterName, files]) => {
+            // Version desktop - Chapitres
+            if (chaptersDropdown) {
+                const clickHandler = (e) => {
+                    e.preventDefault();
+                    loadChapter(chapterName);
+                    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+                };
+                chaptersDropdown.appendChild(createMenuItem(chapterName, clickHandler));
+            }
+
+            // Version mobile - Chapitres
+            if (mobileChaptersDropdown) {
+                const clickHandler = (e) => {
+                    e.preventDefault();
+                    loadChapter(chapterName);
+                    document.getElementById('mobile-menu')?.classList.remove('active');
+                    document.querySelector('.mobile-menu-button')?.classList.remove('active');
+                    document.body.style.overflow = '';
+                    showFileView();
+                };
+                mobileChaptersDropdown.appendChild(createMenuItem(chapterName, clickHandler, true));
+            }
+
+            // Ajouter les fichiers du chapitre
+            if (Array.isArray(files) && files.length > 0) {
+                files.forEach((file, fileIndex) => {
+                    // Version desktop - Fichiers
+                    if (filesDropdown) {
+                        const clickHandler = (e) => {
+                            e.preventDefault();
+                            loadChapter(chapterName);
+                            openFile(fileIndex);
+                            showFileView();
+                            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+                        };
+                        filesDropdown.appendChild(createMenuItem(file, clickHandler));
+                    }
+
+                    // Version mobile - Fichiers
+                    if (mobileFilesDropdown) {
+                        const clickHandler = (e) => {
+                            e.preventDefault();
+                            loadChapter(chapterName);
+                            openFile(fileIndex);
+                            showFileView();
+                            document.getElementById('mobile-menu')?.classList.remove('active');
+                            document.querySelector('.mobile-menu-button')?.classList.remove('active');
+                            document.body.style.overflow = '';
+                        };
+                        mobileFilesDropdown.appendChild(createMenuItem(file, clickHandler, true));
+                    }
+                });
+            }
+        });
+    }
     
     // Charger automatiquement la vue d'accueil
     showHomeView();
     
-    // Remplir le menu des chapitres
-    const chaptersDropdown = document.querySelector('.dropdown-content');
-    Object.keys(appData).forEach(chapter => {
-        const chapterElement = document.createElement('a');
-        chapterElement.href = '#';
-        chapterElement.textContent = chapter;
-        chapterElement.addEventListener('click', (e) => {
-            e.preventDefault();
-            loadChapter(chapter);
-        });
-        chaptersDropdown.appendChild(chapterElement);
-    });
-
     // Gestion des boutons de navigation
-    document.getElementById('prev-file').addEventListener('click', navigateToPreviousFile);
-    document.getElementById('next-file').addEventListener('click', navigateToNextFile);
+    const prevBtn = document.getElementById('prev-file');
+    const nextBtn = document.getElementById('next-file');
+    
+    if (prevBtn) prevBtn.addEventListener('click', navigateToPreviousFile);
+    if (nextBtn) nextBtn.addEventListener('click', navigateToNextFile);
 }
 
 // Fonction utilitaire pour obtenir l'icône appropriée selon l'extension du fichier
@@ -231,35 +306,74 @@ function loadChapter(chapterName) {
     currentChapter = chapterName;
     files = appData[chapterName] || [];
     
-    // Mettre à jour le menu déroulant des fichiers
-    filesDropdown.innerHTML = '';
+    // Mettre à jour le menu déroulant des fichiers (desktop et mobile)
+    const filesDropdown = document.getElementById('files-dropdown');
+    const mobileFilesDropdown = document.getElementById('mobile-files-dropdown');
+    
+    // Vider les menus déroulants
+    if (filesDropdown) filesDropdown.innerHTML = '';
+    if (mobileFilesDropdown) mobileFilesDropdown.innerHTML = '';
     
     if (files.length > 0) {
-        files.forEach((file, index) => {
-            const fileElement = document.createElement('a');
-            fileElement.href = '#';
-            const icon = getFileIcon(file);
-            fileElement.innerHTML = `<span class="file-icon" style="margin-right: 8px;">${icon}</span>${file}`;
-            fileElement.addEventListener('click', (e) => {
-                e.preventDefault();
-                openFile(index);
-                showFileView(); // S'assurer qu'on passe en mode fichier
+        // Mettre à jour le menu déroulant desktop
+        if (filesDropdown) {
+            files.forEach((file, index) => {
+                const fileElement = document.createElement('a');
+                fileElement.href = '#';
+                const icon = getFileIcon(file);
+                fileElement.innerHTML = `<span class="file-icon" style="margin-right: 8px;">${icon}</span>${file}`;
+                fileElement.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openFile(index);
+                    showFileView();
+                    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+                });
+                filesDropdown.appendChild(fileElement);
             });
-            filesDropdown.appendChild(fileElement);
-        });
-    } else {
-        const noFilesElement = document.createElement('a');
-        noFilesElement.href = '#';
-        noFilesElement.textContent = 'Aucun fichier disponible';
-        noFilesElement.style.pointerEvents = 'none';
-        filesDropdown.appendChild(noFilesElement);
-    }
-    
-    // Afficher le premier fichier du chapitre si disponible
-    if (files.length > 0) {
+        }
+        
+        // Mettre à jour le menu déroulant mobile
+        if (mobileFilesDropdown) {
+            files.forEach((file, index) => {
+                const fileElement = document.createElement('div');
+                fileElement.className = 'mobile-dropdown-item';
+                const icon = getFileIcon(file);
+                fileElement.innerHTML = `<span class="file-icon" style="margin-right: 8px;">${icon}</span>${file}`;
+                fileElement.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openFile(index);
+                    showFileView();
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const menuButton = document.querySelector('.mobile-menu-button');
+                    if (mobileMenu) mobileMenu.classList.remove('active');
+                    if (menuButton) menuButton.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+                mobileFilesDropdown.appendChild(fileElement);
+            });
+        }
+        
+        // Afficher le premier fichier du chapitre
         openFile(0);
-        showFileView(); // S'assurer qu'on passe en mode fichier
+        showFileView();
     } else {
+        // Afficher un message si aucun fichier n'est disponible
+        if (filesDropdown) {
+            const noFilesElement = document.createElement('a');
+            noFilesElement.href = '#';
+            noFilesElement.textContent = 'Aucun fichier disponible';
+            noFilesElement.style.pointerEvents = 'none';
+            filesDropdown.appendChild(noFilesElement);
+        }
+        
+        if (mobileFilesDropdown) {
+            const noFilesElement = document.createElement('div');
+            noFilesElement.className = 'mobile-dropdown-item';
+            noFilesElement.textContent = 'Aucun fichier disponible';
+            noFilesElement.style.pointerEvents = 'none';
+            mobileFilesDropdown.appendChild(noFilesElement);
+        }
+        
         showNoFilesMessage();
     }
 }
@@ -523,10 +637,105 @@ function setupLogoClickHandler() {
     }
 }
 
+// Gestion du menu mobile
+function setupMobileMenu() {
+    const menuButton = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileHomeBtn = document.getElementById('mobile-home-btn');
+    const guideModal = document.getElementById('guide-modal');
+    const closeGuide = document.querySelector('.close-guide');
+
+    // Bascule le menu
+    menuButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menuButton.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        
+        // Animation du bouton hamburger
+        if (menuButton.classList.contains('active')) {
+            document.body.style.overflow = 'hidden'; // Empêche le défilement quand le menu est ouvert
+        } else {
+            document.body.style.overflow = ''; // Rétablit le défilement
+        }
+    });
+
+    // Gestion des menus déroulants mobiles
+    document.querySelectorAll('.mobile-dropbtn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const dropdown = button.closest('.mobile-dropdown');
+            dropdown.classList.toggle('active');
+            
+            // Fermer les autres menus déroulants
+            document.querySelectorAll('.mobile-dropdown').forEach(item => {
+                if (item !== dropdown) {
+                    item.classList.remove('active');
+                }
+            });
+        });
+    });
+
+    // Fermer le menu quand on clique sur un élément
+    document.querySelectorAll('.mobile-menu-item').forEach(item => {
+        item.addEventListener('click', () => {
+            menuButton.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = ''; // Rétablit le défilement
+        });
+    });
+    
+    // Fermer les menus déroulants quand on clique ailleurs
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.mobile-dropdown').forEach(item => {
+            item.classList.remove('active');
+        });
+    });
+
+    // Gestion du bouton Guide dans le menu mobile
+    const mobileGuideBtn = document.getElementById('mobile-guide-btn');
+    if (mobileGuideBtn && guideModal) {
+        mobileGuideBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            menuButton.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+            guideModal.style.display = 'flex';
+        });
+    }
+
+    // Gestion du bouton Accueil dans le menu mobile
+    if (mobileHomeBtn) {
+        mobileHomeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomeView();
+            menuButton.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
+
+    // Fermer le menu quand on clique en dehors
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.mobile-menu') && !e.target.closest('.mobile-menu-button')) {
+            menuButton.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = ''; // Rétablit le défilement
+        }
+    });
+
+    // Fermer le menu quand on fait défiler
+    window.addEventListener('scroll', () => {
+        menuButton.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = ''; // Rétablit le défilement
+    });
+}
+
 // Initialiser l'application quand le DOM est chargé
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
     setupHomeButtons();
+    setupMobileMenu();
     setupFullscreen();
     setupGuideModal();
     setupLogoClickHandler();
