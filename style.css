@@ -385,7 +385,7 @@ main {
 
 /* Style du bouton de téléchargement */
 .download-btn {
-    background-color: #0d47a1;
+    background-color: #e0e0e0;
     color: #e3f2fd;
     padding: 0.6rem 1.2rem;
     border: 1px solid #42a5f5;
@@ -582,7 +582,7 @@ main {
 /* Changement de couleur au survol des liens */
 .dropdown-content a:hover {
     background-color: #1976d2;
-    color: white;
+    color: #333;
 }
 
 /* Afficher le menu déroulant au survol */
@@ -757,7 +757,7 @@ main::-webkit-scrollbar {
     background-color: #A0522D;  /* Marron plus clair au survol */
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-    color: white;
+    color: #333;
     text-decoration: none;
 }
 
@@ -943,7 +943,7 @@ main::-webkit-scrollbar {
     right: 2rem;
     z-index: 1000;
     background-color: #3498db;
-    color: white;
+    color: #333;
     padding: 0.5rem 1rem; /* Ajustement du padding pour correspondre au bouton Chapitres */
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -993,11 +993,12 @@ main::-webkit-scrollbar {
     right: -250px;
     width: 250px;
     height: 100%;
-    background-color: #1e1e1e;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #f8f9fa;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    padding: 70px 20px 20px;
+    padding: 70px 15px 20px;
     transition: right 0.3s ease;
+    overflow-y: auto;
 }
 
 .mobile-menu.active {
@@ -1010,19 +1011,21 @@ main::-webkit-scrollbar {
     width: 100%;
     padding: 12px 15px;
     margin-bottom: 10px;
-    background-color: #2d2d2d;
-    color: white !important;
-    border: none;
-    border-radius: 4px;
+    background-color: #f8f9fa;
+    color: #333 !important;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
     text-align: left;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .mobile-menu-item:hover {
-    background-color: #3d3d3d;
+    background-color: #e0e0e0;
 }
 
 /* Style pour les boutons desktop */
@@ -1043,18 +1046,21 @@ main::-webkit-scrollbar {
     align-items: center;
     width: 100%;
     padding: 12px 15px;
-    background-color: #2d2d2d;
-    color: white !important;
-    border: none;
-    border-radius: 4px;
+    background-color: #f8f9fa;
+    color: #333 !important;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
     text-align: left;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .mobile-dropbtn:hover {
-    background-color: #3d3d3d;
+    background-color: #f0f0f0;
+    border-color: #ccc;
 }
 
 .dropdown-arrow {
@@ -1070,10 +1076,12 @@ main::-webkit-scrollbar {
 .mobile-dropdown-content {
     display: none;
     width: 100%;
-    background-color: #3d3d3d;
-    border-radius: 4px;
-    margin-top: 4px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    margin: 4px 0 10px 0;
     overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .mobile-dropdown.active .mobile-dropdown-content {
@@ -1083,14 +1091,21 @@ main::-webkit-scrollbar {
 .mobile-dropdown-item {
     display: block;
     padding: 10px 25px;
-    color: white;
+    color: #333;
+    background-color: #fff;
     text-decoration: none;
-    font-size: 0.95em;
-    transition: background-color 0.2s;
+    font-size: 0.9em;
+    transition: all 0.2s;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-dropdown-item:last-child {
+    border-bottom: none;
 }
 
 .mobile-dropdown-item:hover {
-    background-color: #4d4d4d;
+    background-color: #f5f5f5;
+    color: #000;
 }
 
 /* Style pour les tablettes */
