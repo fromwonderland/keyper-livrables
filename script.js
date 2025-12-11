@@ -11,7 +11,7 @@ const fileContent = document.getElementById('file-content');
 
 // Données des chapitres et fichiers
 const appData = {
-    '📂Cahier des charges': ['Cahier des charges.pdf'],
+    '📂Cahier des charges': ['KEYPER___Application_web_de_gestion_de_foyer.pdf'],
 
 };
 
